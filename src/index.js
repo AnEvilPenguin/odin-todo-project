@@ -10,3 +10,27 @@ logo.src = jpg;
 
 body.appendChild(logo);
 
+const name = document.createElement("div");
+name.textContent = "Default Project";
+name.classList.add("name");
+
+body.appendChild(name);
+
+const sidebar = document.createElement("div");
+sidebar.classList.add("sidebar");
+
+body.appendChild(sidebar);
+
+const content = document.createElement("div");
+content.classList.add("content");
+content.textContent = "content";
+
+body.appendChild(content);
+
+
+const footer = document.createElement("div");
+content.classList.add("footer");
+content.textContent = "footer";
+
+body.appendChild(footer);
+

@@ -4,11 +4,11 @@ body {
 
     display: grid;
 
-    grid-template-areas: 
+    grid-template-areas:
         "logo name"
         "sidebar content"
         "sidebar footer";
-        
+
     grid-template-columns: 150px 6fr;
     grid-template-rows: 150px 10fr 1fr;
 }
@@ -18,4 +18,21 @@ body {
     height: 150px;
 
     grid-area: logo;
+}
+
+.name {
+    grid-area: name;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.content {
+    grid-area: content;
+    margin-bottom: auto;
+}
+
+.footer {
+    grid-area: footer;
 }
