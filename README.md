@@ -18,3 +18,7 @@ concepts coming in with local storage.
   - Specifically using good well designed code
 - EP wanted to use more GitHub actions
 
+## Basic Plan
+
+![wireframe design](./docs/1000018588.jpg)
+
