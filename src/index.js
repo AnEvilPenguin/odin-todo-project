@@ -1,8 +1,6 @@
 import "./styles.css";
-import jpg from "../assets/logo.jpg";
-import { abstractElementFactory } from "./util/dom";
 import { Project } from "./classes/project";
-import { changeProject } from "./state";
+import { App } from "./components/app";
 
 const body = document.querySelector("body");
 body.classList.add("background");
@@ -12,28 +10,5 @@ const defaultProject = new Project("Default Project");
 // static fromJSON?
 // save to local storage
 
-const div = abstractElementFactory("div");
-const img = abstractElementFactory("img");
-const ul = abstractElementFactory("ul");
-const li = abstractElementFactory("li");
-
-const logo = img("logo", { src: jpg });
-body.appendChild(logo);
-
-const header = div("header", {});
-body.appendChild(header);
-
-const sidebar = div("sidebar", {}, 
-    ul("project-list", {},
-        li("project-item", {}, defaultProject.name),
-    ),
-);
-body.appendChild(sidebar);
-
-const content = div("content", {}, "content"); 
-body.appendChild(content);
-
-const footer = div("footer", {}, "footer");
-body.appendChild(footer);
-
-changeProject(defaultProject, header);
+const app = App(defaultProject);
+body.appendChild(app);

@@ -1,16 +1,18 @@
 body {
     margin: 0px;
     padding: 0px;
+}
 
+.app {
     min-height: 100vh;
     min-width: 100vw;
 
     display: grid;
 
     grid-template-areas:
-        "logo header"
-        "sidebar content"
-        "sidebar footer";
+    "logo header"
+    "sidebar content"
+    "sidebar footer";
 
     grid-template-columns: 150px 6fr;
     grid-template-rows: 150px 10fr 1fr;
