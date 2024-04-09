@@ -5,8 +5,10 @@ export function abstractElementFactory (tag) {
     return function (className, attributes, ...children) {
         const element = document.createElement(tag);
 
-        if (className) {
+        if (typeof className === 'string') {
             element.classList.add(className);
+        } else if (Array.isArray(className)) {
+            className.forEach(c => element.classList.add(c));
         }
 
        if (attributes) {
