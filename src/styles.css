@@ -2,6 +2,9 @@ body {
     margin: 0px;
     padding: 0px;
 
+    min-height: 100vh;
+    min-width: 100vw;
+
     display: grid;
 
     grid-template-areas:
@@ -22,17 +25,21 @@ body {
 
 .name {
     grid-area: name;
+    background-color: aqua;
 }
 
 .sidebar {
     grid-area: sidebar;
+    background-color: teal;
 }
 
 .content {
     grid-area: content;
     margin-bottom: auto;
+    background-color: goldenrod;
 }
 
 .footer {
     grid-area: footer;
+    background-color: peru;
 }
