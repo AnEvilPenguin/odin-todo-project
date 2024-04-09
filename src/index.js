@@ -2,11 +2,15 @@ import "./styles.css";
 import jpg from "../assets/logo.jpg";
 import { abstractElementFactory } from "./util/dom";
 import { Project } from "./classes/project";
+import { Banner } from "./components/banner";
 
 const body = document.querySelector("body");
 body.classList.add("background");
 
 const defaultProject = new Project("Default Project");
+// TODO Project toJSON
+// static fromJSON?
+// save to local storage
 
 const div = abstractElementFactory("div");
 const img = abstractElementFactory("img");
@@ -16,7 +20,7 @@ const li = abstractElementFactory("li");
 const logo = img("logo", { src: jpg });
 body.appendChild(logo);
 
-const banner = div("banner", {}, defaultProject.name);
+const banner = Banner(defaultProject);
 body.appendChild(banner);
 
 const sidebar = div("sidebar", {}, 
