@@ -6,16 +6,24 @@ import { Project } from "./classes/project";
 const body = document.querySelector("body");
 body.classList.add("background");
 
+const defaultProject = new Project("Default Project");
+
 const div = abstractElementFactory("div");
 const img = abstractElementFactory("img");
+const ul = abstractElementFactory("ul");
+const li = abstractElementFactory("li");
 
 const logo = img("logo", { src: jpg });
 body.appendChild(logo);
 
-const name = div("name", {}, "Default Project");
+const name = div("name", {}, defaultProject.name);
 body.appendChild(name);
 
-const sidebar = div("sidebar", {}, "sidebar");
+const sidebar = div("sidebar", {}, 
+    ul("project-list", {},
+        li("project-item", {}, defaultProject.name),
+    ),
+);
 body.appendChild(sidebar);
 
 const content = div("content", {}, "content"); 
@@ -24,11 +32,3 @@ body.appendChild(content);
 const footer = div("footer", {}, "footer");
 body.appendChild(footer);
 
-const defaultProject = new Project("Default Project");
-
-defaultProject.setTodoItem({id: "whatever"});
-
-console.dir(defaultProject.listTodoItems());
-console.dir(defaultProject.getTodoItem("whatever"));
-defaultProject.removeTodoItem("whatever");
-console.dir(defaultProject.listTodoItems());
