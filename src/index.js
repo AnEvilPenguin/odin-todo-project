@@ -29,8 +29,8 @@ body.appendChild(content);
 
 
 const footer = document.createElement("div");
-content.classList.add("footer");
-content.textContent = "footer";
+footer.classList.add("footer");
+footer.textContent = "footer";
 
 body.appendChild(footer);
 
