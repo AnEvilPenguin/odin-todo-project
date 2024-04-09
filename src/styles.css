@@ -8,7 +8,7 @@ body {
     display: grid;
 
     grid-template-areas:
-        "logo name"
+        "logo header"
         "sidebar content"
         "sidebar footer";
 
@@ -23,8 +23,11 @@ body {
     grid-area: logo;
 }
 
+.header {
+    grid-area: header;
+}
+
 .banner {
-    grid-area: name;
     background-color: aqua;
 }
 
