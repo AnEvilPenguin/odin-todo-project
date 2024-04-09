@@ -1,6 +1,7 @@
 import "./styles.css";
 import jpg from "../assets/logo.jpg";
 import { abstractElementFactory } from "./util/dom";
+import { Project } from "./classes/project";
 
 const body = document.querySelector("body");
 body.classList.add("background");
@@ -23,3 +24,11 @@ body.appendChild(content);
 const footer = div("footer", {}, "footer");
 body.appendChild(footer);
 
+const defaultProject = new Project("Default Project");
+
+defaultProject.setTodoItem({id: "whatever"});
+
+console.dir(defaultProject.listTodoItems());
+console.dir(defaultProject.getTodoItem("whatever"));
+defaultProject.removeTodoItem("whatever");
+console.dir(defaultProject.listTodoItems());
