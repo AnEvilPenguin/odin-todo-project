@@ -1,36 +1,25 @@
 import "./styles.css";
 import jpg from "../assets/logo.jpg";
+import { abstractElementFactory } from "./util/dom";
 
 const body = document.querySelector("body");
 body.classList.add("background");
 
-const logo = document.createElement("img");
-logo.classList.add("logo");
-logo.src = jpg;
+const div = abstractElementFactory("div");
+const img = abstractElementFactory("img");
 
+const logo = img("logo", { src: jpg });
 body.appendChild(logo);
 
-const name = document.createElement("div");
-name.textContent = "Default Project";
-name.classList.add("name");
-
+const name = div("name", {}, "Default Project");
 body.appendChild(name);
 
-const sidebar = document.createElement("div");
-sidebar.classList.add("sidebar");
-
+const sidebar = div("sidebar", {}, "sidebar");
 body.appendChild(sidebar);
 
-const content = document.createElement("div");
-content.classList.add("content");
-content.textContent = "content";
-
+const content = div("content", {}, "content"); 
 body.appendChild(content);
 
-
-const footer = document.createElement("div");
-footer.classList.add("footer");
-footer.textContent = "footer";
-
+const footer = div("footer", {}, "footer");
 body.appendChild(footer);
 
