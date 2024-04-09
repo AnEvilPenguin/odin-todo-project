@@ -16,8 +16,8 @@ const li = abstractElementFactory("li");
 const logo = img("logo", { src: jpg });
 body.appendChild(logo);
 
-const name = div("name", {}, defaultProject.name);
-body.appendChild(name);
+const banner = div("banner", {}, defaultProject.name);
+body.appendChild(banner);
 
 const sidebar = div("sidebar", {}, 
     ul("project-list", {},

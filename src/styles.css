@@ -23,7 +23,7 @@ body {
     grid-area: logo;
 }
 
-.name {
+.banner {
     grid-area: name;
     background-color: aqua;
 }
