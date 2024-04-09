@@ -10,9 +10,7 @@ const li = abstractElementFactory("li");
 export function App (project) {
     return div("app", {}, 
         img("logo", { src: jpg }),
-        div("header", {},
-            Banner(project),
-        ),
+        Banner(project),
         div("sidebar", {}, 
             ul("project-list", {},
                 li("project-item", {}, project.name),
