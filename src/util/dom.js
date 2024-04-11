@@ -18,6 +18,8 @@ export function abstractElementFactory(tag) {
     }
 
     children.forEach((child) => {
+      if (child == null) return;
+
       if (typeof child === "string") {
         return element.appendChild(document.createTextNode(child));
       }

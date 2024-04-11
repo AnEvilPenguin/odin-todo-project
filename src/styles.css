@@ -48,3 +48,7 @@ body {
     grid-area: footer;
     background-color: peru;
 }
+
+svg {
+    min-width: 15px;
+}
