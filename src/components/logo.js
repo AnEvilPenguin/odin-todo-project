@@ -1,7 +1,5 @@
-import { abstractElementFactory } from "../util/dom";
+import { img } from "../util/dom";
 
-const img = abstractElementFactory("img");
-
-export function Logo (image) {
-    return img("logo", { src: image });
+export function Logo(image) {
+  return img("logo", { src: image });
 }

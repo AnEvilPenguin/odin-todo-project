@@ -1,6 +1,4 @@
-import { abstractElementFactory } from "../util/dom";
-
-const button = abstractElementFactory("button");
+import { button } from "../util/dom";
 
 export function Action(content) {
   return button("action", {}, content);

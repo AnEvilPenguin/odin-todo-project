@@ -1,7 +1,5 @@
-import { abstractElementFactory } from "../util/dom";
+import { div } from "../util/dom";
 import { Action } from "./action";
-
-const div = abstractElementFactory("div");
 
 export function ActionBar() {
   return div(

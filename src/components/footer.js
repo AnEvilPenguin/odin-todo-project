@@ -1,7 +1,5 @@
-import { abstractElementFactory } from "../util/dom";
-
-const div = abstractElementFactory("div");
+import { div } from "../util/dom";
 
 export function Footer() {
-    return div("footer", {}, "footer");
-};
+  return div("footer", {}, "footer");
+}
