@@ -1,6 +1,7 @@
 import { div } from "../util/dom";
 import { Action } from "./action";
 import Hamburger from "../assets/hamburger-menu.svg";
+import Settings from "../assets/settings-menu.svg";
 
 export function ActionBar() {
   return div(
@@ -8,7 +9,7 @@ export function ActionBar() {
     {},
     "actions",
     Action({ svg: Hamburger }),
-    Action({ text: "cog" }),
+    Action({ svg: Settings }),
     Action({ text: "NEW" }),
   );
 }
