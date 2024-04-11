@@ -8,8 +8,7 @@ export function ActionBar() {
   return div(
     "action-bar",
     {},
-    "actions",
-    Action({ svg: Hamburger }),
+    Action({ svg: Hamburger, additionalClasses: ["hamburger"] }),
     Action({ svg: Settings }),
     Action({ svg: Add }),
   );

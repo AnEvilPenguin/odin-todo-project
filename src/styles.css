@@ -49,9 +49,17 @@ body {
     background-color: peru;
 }
 
+.action-bar {
+    display: flex;
+}
+
 .action {
     padding: 5px;
     min-height: 36px;
+}
+
+.hamburger {
+    margin-right: auto;
 }
 
 svg {
