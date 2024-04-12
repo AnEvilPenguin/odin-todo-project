@@ -1,4 +1,5 @@
 import { abstractElementFactory } from "../util/dom";
+import { TodoItem } from "./todoItem";
 
 const table = abstractElementFactory("table");
 const thead = abstractElementFactory("thead");
@@ -11,43 +12,7 @@ export function Table(project) {
   let body;
   if (project) {
     const todoList = project.listTodoItems();
-    console.dir(todoList);
-    body = tbody(
-      "body",
-      {},
-      tr(
-        "body-row",
-        {},
-        td("value", {}, "TODO-1"),
-        td("value", {}, "2024-04-20"),
-        td("value", {}, "P1"),
-        td("value", {}, "X"),
-      ),
-      tr(
-        "body-row",
-        {},
-        td("value", {}, "TODO-2"),
-        td("value", {}, "2024-04-20"),
-        td("value", {}, "P2"),
-        td("value", {}, "X"),
-      ),
-      tr(
-        "body-row",
-        {},
-        td("value", {}, "TODO-3"),
-        td("value", {}, "2024-04-20"),
-        td("value", {}, "P3"),
-        td("value", {}, "X"),
-      ),
-      tr(
-        "body-row",
-        {},
-        td("value", {}, "TODO-4"),
-        td("value", {}, "2024-04-20"),
-        td("value", {}, "P1"),
-        td("value", {}, "X"),
-      ),
-    );
+    body = tbody("body", {}, ...todoList.map((t) => TodoItem(t)));
   }
 
   return table(
