@@ -66,3 +66,16 @@ svg {
     min-width: 15px;
     min-height: 15px;
 }
+
+.delete-all {
+    text-align: right;
+}
+
+table {
+    width: 100%;
+}
+
+td:nth-last-child(2),
+th:nth-last-child(2) {
+    width: 100%;
+}
