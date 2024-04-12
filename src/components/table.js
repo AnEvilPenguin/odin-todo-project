@@ -7,23 +7,12 @@ const tr = abstractElementFactory("tr");
 const th = abstractElementFactory("th");
 const td = abstractElementFactory("td");
 
-export function Table() {
-  return table(
-    "todo-table",
-    {},
-    thead(
-      "header",
-      {},
-      tr(
-        "head-row",
-        {},
-        th("head-value", { scope: "col" }, "Name"),
-        th("head-value", { scope: "col" }, "Due Date"),
-        th("head-value", { scope: "col" }, "Priority"),
-        th("head-value", { scope: "col" }, "Delete"),
-      ),
-    ),
-    tbody(
+export function Table(project) {
+  let body;
+  if (project) {
+    const todoList = project.listTodoItems();
+    console.dir(todoList);
+    body = tbody(
       "body",
       {},
       tr(
@@ -58,6 +47,24 @@ export function Table() {
         td("value", {}, "P1"),
         td("value", {}, "X"),
       ),
+    );
+  }
+
+  return table(
+    "todo-table",
+    {},
+    thead(
+      "header",
+      {},
+      tr(
+        "head-row",
+        {},
+        th("head-value", { scope: "col" }, "Name"),
+        th("head-value", { scope: "col" }, "Due Date"),
+        th("head-value", { scope: "col" }, "Priority"),
+        th("head-value", { scope: "col" }, "Delete"),
+      ),
     ),
+    body,
   );
 }

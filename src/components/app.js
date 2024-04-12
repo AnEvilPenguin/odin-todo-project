@@ -13,7 +13,7 @@ export function App(project) {
     Logo(penguinLogo),
     Banner(project),
     Sidebar(project),
-    Content(),
+    Content(project),
     Footer(),
   );
 }
