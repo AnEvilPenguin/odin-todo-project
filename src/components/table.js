@@ -1,12 +1,5 @@
-import { abstractElementFactory } from "../util/dom";
+import { table, thead, tbody, tr, th } from "../util/dom";
 import { TodoItem } from "./todoItem";
-
-const table = abstractElementFactory("table");
-const thead = abstractElementFactory("thead");
-const tbody = abstractElementFactory("tbody");
-const tr = abstractElementFactory("tr");
-const th = abstractElementFactory("th");
-const td = abstractElementFactory("td");
 
 export function Table(project) {
   let body;

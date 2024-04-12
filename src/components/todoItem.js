@@ -1,7 +1,4 @@
-import { abstractElementFactory } from "../util/dom";
-
-const tr = abstractElementFactory("tr");
-const td = abstractElementFactory("td");
+import { tr, td } from "../util/dom";
 
 export function TodoItem(todo) {
   return tr(

@@ -36,3 +36,10 @@ export const img = abstractElementFactory("img");
 export const ul = abstractElementFactory("ul");
 export const li = abstractElementFactory("li");
 export const button = abstractElementFactory("button");
+
+export const table = abstractElementFactory("table");
+export const thead = abstractElementFactory("thead");
+export const tbody = abstractElementFactory("tbody");
+export const th = abstractElementFactory("th");
+export const tr = abstractElementFactory("tr");
+export const td = abstractElementFactory("td");
