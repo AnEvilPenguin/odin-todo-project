@@ -6,14 +6,17 @@ import { Logo } from "./logo";
 import { Footer } from "./footer";
 import { Content } from "./content";
 
-export function App(project) {
+export function App(Props) {
+  const { projects, activeProjectId } = Props;
+  const activeProject = projects.find((p) => p.id === activeProjectId);
+
   return div(
     "app",
     {},
     Logo(penguinLogo),
-    Banner(project),
-    Sidebar(project),
-    Content(project),
+    Banner(activeProject),
+    Sidebar(Props),
+    Content(activeProject),
     Footer(),
   );
 }
