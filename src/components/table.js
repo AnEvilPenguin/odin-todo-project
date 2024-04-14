@@ -10,7 +10,7 @@ export function Table(project) {
     body = tbody("body", {}, ...todoList.map((t) => TodoItem(t)));
   }
 
-  const deleteAll = th(["head-value", "delete-all"], { scope: "col" });
+  const deleteAll = th("delete-all", { scope: "col" });
   deleteAll.innerHTML = Delete;
 
   return table(

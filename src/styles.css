@@ -3,6 +3,12 @@ body {
     padding: 0px;
 }
 
+ul, ol {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
 .app {
     min-height: 100vh;
     min-width: 100vw;
@@ -78,4 +84,12 @@ table {
 td:nth-last-child(2),
 th:nth-last-child(2) {
     width: 100%;
+}
+
+.active {
+    border: 2px solid black;
+}
+
+.value, head-value {
+    min-width: 100px;
 }
