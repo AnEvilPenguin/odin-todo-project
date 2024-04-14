@@ -1,7 +1,7 @@
 import { div, ul, li } from "../util/dom";
 import { Action } from "./action";
 
-export function Sidebar({ projects, activeProjectId }) {
+export function Sidebar({ projects, activeProjectId, newProject }) {
   const items = projects.map((project) => {
     if (project.id === activeProjectId) {
       return li(["project-item", "active"], {}, project.name);
@@ -13,6 +13,10 @@ export function Sidebar({ projects, activeProjectId }) {
     "sidebar",
     {},
     ul("project-list", {}, ...items),
-    Action({ additionalClasses: ["new-project"], text: "New Project" }),
+    Action({
+      additionalClasses: ["new-project"],
+      text: "New Project",
+      onClick: newProject,
+    }),
   );
 }
