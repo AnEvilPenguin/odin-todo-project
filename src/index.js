@@ -18,24 +18,35 @@ secondProject.setTodoItem(new Todo("TODO-5", "2024-04-21", "P3"));
 // static fromJSON?
 // save to local storage
 
-let functions = {};
+let functions;
 
 const createApp = (projects, activeProjectId) =>
   App({ projects, activeProjectId, ...functions });
 
 const projects = [defaultProject, secondProject];
+let activeProject = defaultProject.id;
 
-const newProject = () => {
+const regenerateApp = () => {
   body.textContent = "";
 
-  const newProject = new Project("New Project");
-  projects.push(newProject);
-
-  const app = createApp(projects, defaultProject.id);
+  const app = createApp(projects, activeProject);
   body.appendChild(app);
 };
 
-functions.newProject = newProject;
+const newProject = () => {
+  const newProject = new Project("New Project");
+  projects.push(newProject);
 
-const app = createApp(projects, defaultProject.id);
-body.appendChild(app);
+  regenerateApp();
+};
+
+const setActiveProject = (projectId) => {
+  activeProject = projectId;
+  regenerateApp();
+};
+
+functions = {
+  newProject,
+  setActiveProject,
+};
+regenerateApp();

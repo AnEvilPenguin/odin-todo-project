@@ -1,12 +1,21 @@
 import { div, ul, li } from "../util/dom";
 import { Action } from "./action";
 
-export function Sidebar({ projects, activeProjectId, newProject }) {
+export function Sidebar({
+  projects,
+  activeProjectId,
+  newProject,
+  setActiveProject,
+}) {
   const items = projects.map((project) => {
     if (project.id === activeProjectId) {
       return li(["project-item", "active"], {}, project.name);
     }
-    return li("project-item", {}, project.name);
+
+    const item = li("project-item", {}, project.name);
+    item.addEventListener("click", () => setActiveProject(project.id));
+
+    return item;
   });
 
   return div(
