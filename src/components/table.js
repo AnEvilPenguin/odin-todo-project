@@ -3,15 +3,38 @@ import { TodoItem } from "./todoItem";
 import Delete from "../assets/trash-icon.svg";
 import { Action } from "./action";
 
-export function Table(project) {
+export function Table(project, regenerateApp) {
   let body;
   if (project) {
     const todoList = project.listTodoItems();
-    body = tbody("body", {}, ...todoList.map((t) => TodoItem(t)));
+    body = tbody(
+      "body",
+      {},
+      ...todoList.map((t) => {
+        const item = TodoItem(t);
+        item.addEventListener("click", () => {
+          project.removeTodoItem(t.id);
+          regenerateApp();
+        });
+
+        return item;
+      }),
+    );
   }
+
+  const deleteAllOnClick = () => {
+    const items = project.listTodoItems();
+
+    items.forEach((item) => {
+      project.removeTodoItem(item.id);
+    });
+
+    regenerateApp();
+  };
 
   const deleteAll = th("delete-all", { scope: "col" });
   deleteAll.innerHTML = Delete;
+  deleteAll.addEventListener("click", deleteAllOnClick);
 
   return table(
     "todo-table",

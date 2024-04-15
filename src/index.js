@@ -37,5 +37,6 @@ const setActiveProject = (projectId) => {
 functions = {
   newProject,
   setActiveProject,
+  regenerateApp,
 };
 regenerateApp();
