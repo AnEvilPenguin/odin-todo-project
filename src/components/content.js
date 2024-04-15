@@ -8,7 +8,8 @@ export function Content(project, regenerateApp) {
   const todoList = project.listTodoItems();
 
   const newButton = Action({ additionalClasses: ["new-button"], text: "New" });
-  newButton.addEventListener("click", () => {
+
+  const newTodoItem = () => {
     const newItem = new Todo(
       `TODO-${todoList.length}`,
       new Date().toISOString(),
@@ -17,12 +18,14 @@ export function Content(project, regenerateApp) {
 
     project.setTodoItem(newItem);
     regenerateApp();
-  });
+  };
+
+  newButton.addEventListener("click", newTodoItem);
 
   return div(
     "content",
     {},
-    ActionBar(),
+    ActionBar({ newTodoItem }),
     Table(project, regenerateApp),
     newButton,
   );
