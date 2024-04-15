@@ -43,7 +43,6 @@ export function loadProjects() {
   }
 
   const rawProjects = localStorage.getItem("projects");
-  const activeProject = localStorage.getItem("activeProject");
 
   const parsedProjects = JSON.parse(rawProjects);
 
@@ -63,6 +62,7 @@ export function loadProjects() {
     return rehydratedProject;
   });
 
+  const activeProject = localStorage.getItem("activeProject") ?? projects[0].id;
   return {
     projects,
     activeProject,

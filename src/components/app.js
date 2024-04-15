@@ -7,7 +7,7 @@ import { Footer } from "./footer";
 import { Content } from "./content";
 
 export function App(Props) {
-  const { projects, activeProjectId, regenerateApp } = Props;
+  const { projects, activeProjectId, regenerateApp, removeProject } = Props;
   const activeProject = projects.find((p) => p.id === activeProjectId);
 
   return div(
@@ -16,7 +16,7 @@ export function App(Props) {
     Logo(penguinLogo),
     Banner(activeProject),
     Sidebar(Props),
-    Content(activeProject, regenerateApp),
+    Content(activeProject, regenerateApp, removeProject),
     Footer(),
   );
 }

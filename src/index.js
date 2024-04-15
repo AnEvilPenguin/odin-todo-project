@@ -29,6 +29,14 @@ const newProject = () => {
   regenerateApp();
 };
 
+const removeProject = () => {
+  projects = projects.filter((p) => p.id !== activeProject);
+
+  activeProject = projects.find((p) => p.id).id;
+  saveProjects(projects, activeProject);
+  regenerateApp();
+};
+
 const setActiveProject = (projectId) => {
   activeProject = projectId;
   regenerateApp();
@@ -38,5 +46,6 @@ functions = {
   newProject,
   setActiveProject,
   regenerateApp,
+  removeProject,
 };
 regenerateApp();
