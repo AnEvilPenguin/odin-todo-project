@@ -1,3 +1,7 @@
+:root {
+    --menu-background-color: 233 233 237;
+}
+
 body {
     margin: 0px;
     padding: 0px;
@@ -60,12 +64,19 @@ ul, ol {
 }
 
 .action {
-    padding: 5px;
     min-height: 36px;
+    padding: 0px;
+
+    background-color: rgb(var(--menu-background-color));
+}
+
+.action > svg {
+    margin: 5px;
 }
 
 .hamburger {
     margin-right: auto;
+    position: relative;
 }
 
 svg {
@@ -97,4 +108,16 @@ th:nth-last-child(2) {
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+.dropdown-menu {
+    position: absolute;
+    background-color: rgb(var(--menu-background-color));
+
+    padding: 5px;
+    border: solid 2px black;
+}
+
+.hidden {
+    visibility: hidden;
 }
