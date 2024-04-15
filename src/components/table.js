@@ -11,11 +11,12 @@ export function Table(project, regenerateApp) {
       "body",
       {},
       ...todoList.map((t) => {
-        const item = TodoItem(t);
-        item.addEventListener("click", () => {
+        const removeItem = () => {
           project.removeTodoItem(t.id);
           regenerateApp();
-        });
+        };
+
+        const item = TodoItem(t, removeItem);
 
         return item;
       }),
