@@ -43,3 +43,5 @@ export const tbody = abstractElementFactory("tbody");
 export const th = abstractElementFactory("th");
 export const tr = abstractElementFactory("tr");
 export const td = abstractElementFactory("td");
+
+export const dialog = abstractElementFactory("dialog");

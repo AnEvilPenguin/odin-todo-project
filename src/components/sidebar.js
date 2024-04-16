@@ -4,8 +4,8 @@ import { Action } from "./action";
 export function Sidebar({
   projects,
   activeProjectId,
-  newProject,
   setActiveProject,
+  showProjectDialog,
 }) {
   const items = projects.map((project) => {
     if (project.id === activeProjectId) {
@@ -25,7 +25,7 @@ export function Sidebar({
     Action({
       additionalClasses: ["new-project"],
       text: "New Project",
-      onClick: newProject,
+      onClick: showProjectDialog,
     }),
   );
 }

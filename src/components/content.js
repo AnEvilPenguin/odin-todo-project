@@ -4,7 +4,7 @@ import { Action } from "./action";
 import { ActionBar } from "./actionBar";
 import { Table } from "./table";
 
-export function Content(project, regenerateApp, removeProject) {
+export function Content(project, regenerateApp, removeProject, projectDialog) {
   const todoList = project.listTodoItems();
 
   const newButton = Action({ additionalClasses: ["new-button"], text: "New" });
@@ -25,6 +25,7 @@ export function Content(project, regenerateApp, removeProject) {
   return div(
     "content",
     {},
+    projectDialog,
     ActionBar({ newTodoItem, removeProject }),
     Table(project, regenerateApp),
     newButton,
