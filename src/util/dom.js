@@ -36,10 +36,14 @@ export const h1 = abstractElementFactory("h1");
 export const h2 = abstractElementFactory("h2");
 
 export const img = abstractElementFactory("img");
+export const button = abstractElementFactory("button");
 
 export const ul = abstractElementFactory("ul");
 export const li = abstractElementFactory("li");
-export const button = abstractElementFactory("button");
+
+export const form = abstractElementFactory("form");
+export const label = abstractElementFactory("label");
+export const input = abstractElementFactory("input");
 
 export const table = abstractElementFactory("table");
 export const thead = abstractElementFactory("thead");

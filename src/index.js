@@ -22,11 +22,11 @@ const regenerateApp = () => {
   saveProjects(projects, activeProject);
 };
 
-const newProject = () => {
-  const newProject = new Project("New Project");
+const newProject = (projectName) => {
+  const newProject = new Project(projectName);
   projects.push(newProject);
 
-  regenerateApp();
+  setActiveProject(newProject.id);
 };
 
 const removeProject = () => {

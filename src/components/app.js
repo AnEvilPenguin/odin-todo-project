@@ -5,13 +5,19 @@ import { Sidebar } from "./sidebar";
 import { Logo } from "./logo";
 import { Footer } from "./footer";
 import { Content } from "./content";
-import { Dialog } from "./dialog";
+import { ProjectDialog } from "./dialog";
 
 export function App(Props) {
-  const { projects, activeProjectId, regenerateApp, removeProject } = Props;
+  const {
+    projects,
+    activeProjectId,
+    regenerateApp,
+    removeProject,
+    newProject,
+  } = Props;
   const activeProject = projects.find((p) => p.id === activeProjectId);
 
-  const projectDialog = Dialog({ title: "New Project" });
+  const projectDialog = ProjectDialog({ newProject });
 
   const showProjectDialog = () => projectDialog.showModal();
 
