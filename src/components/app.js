@@ -11,7 +11,7 @@ export function App(Props) {
   const { projects, activeProjectId, regenerateApp, removeProject } = Props;
   const activeProject = projects.find((p) => p.id === activeProjectId);
 
-  const projectDialog = Dialog();
+  const projectDialog = Dialog({ title: "New Project" });
 
   const showProjectDialog = () => projectDialog.showModal();
 

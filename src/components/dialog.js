@@ -1,11 +1,34 @@
-import { dialog, button } from "../util/dom";
+import { dialog, button, h2, div } from "../util/dom";
 
-export function Dialog() {
-  const closeButton = button("dialog-close", {}, "OK");
+export function Dialog({
+  title,
+  classList = ["dialog"],
+  submitButtonText = "OK",
+  cancelButtonText = "Cancel",
+  onSubmit = () => console.log(`${title} submitted`),
+  onCancel = () => console.log(`${title} cancelled`),
+}) {
+  const cancelButton = button("dialog-cancel", {}, cancelButtonText);
 
-  const dialogInstance = dialog("dialog", {}, "I'm a dialog", closeButton);
+  cancelButton.addEventListener("click", () => {
+    onCancel();
+    dialogInstance.close();
+  });
 
-  closeButton.addEventListener("click", () => dialogInstance.close());
+  const submitButton = button("dialog-submit", {}, submitButtonText);
+  submitButton.addEventListener("click", () => {
+    onSubmit();
+    dialogInstance.close();
+  });
+
+  const buttons = div("dialog-buttons", {}, submitButton, cancelButton);
+
+  const dialogInstance = dialog(
+    classList,
+    {},
+    h2("dialog-title", {}, title),
+    buttons,
+  );
 
   return dialogInstance;
 }
