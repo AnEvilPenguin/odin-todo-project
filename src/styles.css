@@ -40,12 +40,32 @@ ul, ol {
 }
 
 .banner {
+    display: flex;
     background-color: aqua;
+
+    justify-content: center;
+    align-items: center;
 }
 
 .sidebar {
     grid-area: sidebar;
     background-color: teal;
+}
+
+.project-item {
+    padding-left: 8px;
+    margin: 0px 2px;
+}
+
+.active {
+    border: 2px solid black;
+    padding-left: 6px;
+    margin: 0px;
+}
+
+
+.sidebar button {
+    margin-left: 8px;
 }
 
 .content {
@@ -95,10 +115,6 @@ table {
 td:nth-last-child(2),
 th:nth-last-child(2) {
     width: 100%;
-}
-
-.active {
-    border: 2px solid black;
 }
 
 .value, head-value {
