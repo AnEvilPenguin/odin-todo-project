@@ -2,14 +2,10 @@
 // /r/webdev/comments/19bjr9a/any_elegant_way_to_handle_creating_html_elements/
 
 export function abstractElementFactory(tag) {
-  return function (className, attributes, ...children) {
+  return function ({ classList = [], ...attributes }, ...children) {
     const element = document.createElement(tag);
 
-    if (typeof className === "string") {
-      element.classList.add(className);
-    } else if (Array.isArray(className)) {
-      className.forEach((c) => element.classList.add(c));
-    }
+    classList.forEach((className) => element.classList.add(className));
 
     if (attributes) {
       Object.entries(attributes).forEach(([key, value]) =>

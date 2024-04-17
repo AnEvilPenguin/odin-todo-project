@@ -22,8 +22,7 @@ export function App(Props) {
   const showProjectDialog = () => projectDialog.showModal();
 
   return div(
-    "app",
-    {},
+    { classList: ["app"] },
     Logo(penguinLogo),
     Banner(activeProject),
     Sidebar({ ...Props, showProjectDialog }),

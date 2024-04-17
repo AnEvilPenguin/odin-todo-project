@@ -1,8 +1,8 @@
 import { button } from "../util/dom";
 
-export function Action({ additionalClasses = [], svg, text, onClick }) {
-  additionalClasses.push("action");
-  const action = button(additionalClasses, {}, text);
+export function Action({ classList = [], svg, text, onClick }) {
+  classList.push("action");
+  const action = button({ classList }, text);
 
   if (svg) {
     action.innerHTML = svg;

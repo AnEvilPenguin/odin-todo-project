@@ -7,7 +7,7 @@ import { Table } from "./table";
 export function Content(project, regenerateApp, removeProject, projectDialog) {
   const todoList = project.listTodoItems();
 
-  const newButton = Action({ additionalClasses: ["new-button"], text: "New" });
+  const newButton = Action({ classList: ["new-button"], text: "New" });
 
   const newTodoItem = () => {
     const newItem = new Todo(
@@ -23,8 +23,7 @@ export function Content(project, regenerateApp, removeProject, projectDialog) {
   newButton.addEventListener("click", newTodoItem);
 
   return div(
-    "content",
-    {},
+    { classList: ["content"] },
     projectDialog,
     ActionBar({ newTodoItem, removeProject }),
     Table(project, regenerateApp),

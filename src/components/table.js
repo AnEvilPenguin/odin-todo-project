@@ -8,8 +8,7 @@ export function Table(project, regenerateApp) {
   if (project) {
     const todoList = project.listTodoItems();
     body = tbody(
-      "body",
-      {},
+      { classList: ["body"] },
       ...todoList.map((t) => {
         const removeItem = () => {
           project.removeTodoItem(t.id);
@@ -33,23 +32,20 @@ export function Table(project, regenerateApp) {
     regenerateApp();
   };
 
-  const deleteAll = th("delete-all", { scope: "col" });
+  const deleteAll = th({ classList: ["delete-all"], scope: "col" });
   deleteAll.innerHTML = Delete;
   deleteAll.addEventListener("click", deleteAllOnClick);
 
   return table(
-    "todo-table",
-    {},
+    { classList: ["todo-table"] },
     thead(
-      "header",
-      {},
+      { classList: ["header"] },
       tr(
-        "head-row",
-        {},
-        th("head-value", { scope: "col" }, "Name"),
-        th("head-value", { scope: "col" }, "Due Date"),
-        th("head-value", { scope: "col" }, "Priority"),
-        th("padding", {}, ""),
+        { classList: ["head-row"] },
+        th({ classList: ["head-value"], scope: "col" }, "Name"),
+        th({ classList: ["head-value"], scope: "col" }, "Due Date"),
+        th({ classList: ["head-value"], scope: "col" }, "Priority"),
+        th({ classList: ["padding"] }, ""),
         deleteAll,
       ),
     ),

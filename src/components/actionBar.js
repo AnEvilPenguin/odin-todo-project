@@ -11,10 +11,13 @@ export function ActionBar({ newTodoItem, removeProject }) {
 
   const hamburger = Action({
     svg: Hamburger,
-    additionalClasses: ["hamburger"],
+    classList: ["hamburger"],
   });
 
-  const removeProjectItem = div("dropdown-action", {}, "Delete Project");
+  const removeProjectItem = div(
+    { classList: ["dropdown-action"] },
+    "Delete Project",
+  );
   removeProjectItem.addEventListener("click", removeProject);
 
   hamburger.addEventListener(
@@ -22,5 +25,10 @@ export function ActionBar({ newTodoItem, removeProject }) {
     DropdownMenu(hamburger, [removeProjectItem]),
   );
 
-  return div("action-bar", {}, hamburger, Action({ svg: Settings }), addAction);
+  return div(
+    { classList: ["action-bar"] },
+    hamburger,
+    Action({ svg: Settings }),
+    addAction,
+  );
 }

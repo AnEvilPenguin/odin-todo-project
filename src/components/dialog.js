@@ -11,23 +11,32 @@ export function Dialog(
   },
   ...children
 ) {
-  const cancelButton = button("dialog-cancel", {}, cancelButtonText);
+  const cancelButton = button(
+    { classList: ["dialog-cancel"] },
+    cancelButtonText,
+  );
 
   cancelButton.addEventListener("click", (event) =>
     dialogInstance.close(onCancel(event)),
   );
 
-  const submitButton = button("dialog-submit", {}, submitButtonText);
+  const submitButton = button(
+    { classList: ["dialog-submit"] },
+    submitButtonText,
+  );
   submitButton.addEventListener("click", (event) =>
     dialogInstance.close(onSubmit(event)),
   );
 
-  const buttons = div("dialog-buttons", {}, submitButton, cancelButton);
+  const buttons = div(
+    { classList: ["dialog-buttons"] },
+    submitButton,
+    cancelButton,
+  );
 
   const dialogInstance = dialog(
-    classList,
-    {},
-    h2("dialog-title", {}, title),
+    { classList },
+    h2({ classList: ["dialog-title"] }, title),
     ...(children ?? {}),
     buttons,
   );
@@ -36,7 +45,8 @@ export function Dialog(
 }
 
 export function ProjectDialog({ newProject }) {
-  const projectNameInput = input("form-input", {
+  const projectNameInput = input({
+    classList: ["form-input"],
     id: "form-project-name",
     type: "text",
   });
@@ -49,9 +59,8 @@ export function ProjectDialog({ newProject }) {
   const projectDialog = Dialog(
     { title: "New Project", onSubmit },
     form(
-      "project-form",
-      {},
-      label("form-label", { for: "form-project-name" }),
+      { classList: ["project-form"] },
+      label({ classList: ["form-label"], for: "form-project-name" }),
       projectNameInput,
     ),
   );
