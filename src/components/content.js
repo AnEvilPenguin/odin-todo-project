@@ -1,31 +1,26 @@
-import { Todo } from "../classes/todo";
 import { div } from "../util/dom";
 import { Action } from "./action";
 import { ActionBar } from "./actionBar";
+import { TodoDialog } from "./dialog";
 import { Table } from "./table";
 
 export function Content(project, regenerateApp, removeProject, projectDialog) {
-  const todoList = project.listTodoItems();
-
-  const newButton = Action({ classList: ["new-button"], text: "New" });
-
-  const newTodoItem = () => {
-    const newItem = new Todo(
-      `TODO-${todoList.length}`,
-      new Date().toISOString(),
-      "P1",
-    );
-
-    project.setTodoItem(newItem);
+  const addItemToProject = (todo) => {
+    project.setTodoItem(todo);
     regenerateApp();
   };
 
-  newButton.addEventListener("click", newTodoItem);
+  const todoDialog = TodoDialog({ addItemToProject });
+  const showTodoModal = () => todoDialog.showModal();
+
+  const newButton = Action({ classList: ["new-button"], text: "New" });
+  newButton.addEventListener("click", showTodoModal);
 
   return div(
     { classList: ["content"] },
     projectDialog,
-    ActionBar({ newTodoItem, removeProject }),
+    todoDialog,
+    ActionBar({ newTodoItem: showTodoModal, removeProject }),
     Table(project, regenerateApp),
     newButton,
   );

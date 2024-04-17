@@ -1,7 +1,6 @@
 import { table, thead, tbody, tr, th } from "../util/dom";
 import { TodoItem } from "./todoItem";
 import Delete from "../assets/trash-icon.svg";
-import { Action } from "./action";
 
 export function Table(project, regenerateApp) {
   let body;

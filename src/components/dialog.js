@@ -1,4 +1,5 @@
 import { dialog, button, h2, div, form, label, input } from "../util/dom";
+import { Todo } from "../classes/todo";
 
 export function Dialog(
   {
@@ -44,12 +45,20 @@ export function Dialog(
   return dialogInstance;
 }
 
+function newLabelInputPair({ inputId, inputType, labelText }) {
+  return {
+    label: label({ classList: ["form-label"], for: inputId }, labelText),
+    input: input({ classList: ["form-input"], id: inputId, type: inputType }),
+  };
+}
+
 export function ProjectDialog({ newProject }) {
-  const projectNameInput = input({
-    classList: ["form-input"],
-    id: "form-project-name",
-    type: "text",
-  });
+  const { input: projectNameInput, label: projectNameLabel } =
+    newLabelInputPair({
+      inputId: "form-project-name",
+      inputType: "text",
+      labelText: "Project Name*",
+    });
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -58,11 +67,7 @@ export function ProjectDialog({ newProject }) {
 
   const projectDialog = Dialog(
     { title: "New Project", onSubmit },
-    form(
-      { classList: ["project-form"] },
-      label({ classList: ["form-label"], for: "form-project-name" }),
-      projectNameInput,
-    ),
+    form({ classList: ["project-form"] }, projectNameLabel, projectNameInput),
   );
 
   projectDialog.addEventListener("close", () => {
@@ -73,6 +78,28 @@ export function ProjectDialog({ newProject }) {
     }
   });
 
-  // todo get contents of form
   return projectDialog;
+}
+
+export function TodoDialog({ addItemToProject }) {
+  const { input: nameInput, label: nameLabel } = newLabelInputPair({
+    inputId: "form-todo-name",
+    inputType: "text",
+    labelText: "Todo Name*",
+  });
+
+  // dialog.returnValue seems to only work with simple values
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    const todo = new Todo(nameInput.value);
+    addItemToProject(todo);
+  };
+
+  const todoDialog = Dialog(
+    { title: "New Todo Item", onSubmit },
+    form({ classList: ["todo-form"] }, nameLabel, nameInput),
+  );
+
+  return todoDialog;
 }
