@@ -76,8 +76,10 @@ export function saveProjects(projects, activeProject) {
   }
 
   if (!Array.isArray(projects)) {
-    localStorage.setItem("projects", []);
-    return;
+    const generatedDefault = generateDefaultProject();
+
+    projects = generatedDefault.projects;
+    activeProject = generatedDefault.activeProject;
   }
 
   const projectsToSave = projects.map((project) => {

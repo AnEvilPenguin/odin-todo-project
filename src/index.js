@@ -32,8 +32,15 @@ const newProject = (projectName) => {
 const removeProject = () => {
   projects = projects.filter((p) => p.id !== activeProject);
 
-  activeProject = projects.find((p) => p.id).id;
+  activeProject = projects?.find((p) => p.id)?.id;
+
   saveProjects(projects, activeProject);
+
+  const loaded = loadProjects();
+
+  projects = loaded.projects;
+  activeProject = loaded.activeProject;
+
   regenerateApp();
 };
 
