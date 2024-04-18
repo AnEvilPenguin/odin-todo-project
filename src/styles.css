@@ -1,10 +1,22 @@
 :root {
-    --menu-background-color: 233 233 237;
+    --header-text-color: #AC3B61;
+    --aside-background-color: #EDC7B7;
+
+    --normal-text-color: #123C69;
+    --normal-background-color: #EEE2DC;
+    --alternate-background-color: #BAB2B5;
+
+    --menu-background-color: #E8E8E4;
+    --text-color: #2F3E46;
+    --background-color: #F8EDEB;
 }
 
 body {
     margin: 0px;
     padding: 0px;
+
+    color: var(--normal-text-color);
+    background-color: var(--normal-background-color);
 }
 
 ul, ol {
@@ -41,7 +53,8 @@ ul, ol {
 
 .banner {
     display: flex;
-    background-color: aqua;
+    background-color: var(--aside-background-color);
+    color: var(--header-text-color);
 
     justify-content: center;
     align-items: center;
@@ -49,7 +62,8 @@ ul, ol {
 
 .sidebar {
     grid-area: sidebar;
-    background-color: teal;
+    background-color: var(--aside-background-color);
+    color: var(--header-text-color);
 }
 
 .project-item {
@@ -58,7 +72,7 @@ ul, ol {
 }
 
 .active {
-    border: 2px solid black;
+    border: 2px solid var(--header-text-color);
     padding-left: 6px;
     margin: 0px;
 }
@@ -71,12 +85,12 @@ ul, ol {
 .content {
     grid-area: content;
     margin-bottom: auto;
-    background-color: goldenrod;
 }
 
 .footer {
     grid-area: footer;
-    background-color: peru;
+    background-color: var(--aside-background-color);
+    color: var(--header-text-color);
 
     display: flex;
     justify-content: center;
@@ -91,7 +105,7 @@ ul, ol {
     min-height: 36px;
     padding: 0px;
 
-    background-color: rgb(var(--menu-background-color));
+    background-color: var(--alternate-background-color);
 }
 
 .action > svg {
@@ -121,8 +135,12 @@ th:nth-last-child(2) {
     width: 100%;
 }
 
-.value, head-value {
+.value, .head-value {
     min-width: 100px;
+}
+
+tr:nth-child(2n) {
+    background-color: var(--alternate-background-color);
 }
 
 table, th, td {
@@ -132,7 +150,7 @@ table, th, td {
 
 .dropdown-menu {
     position: absolute;
-    background-color: rgb(var(--menu-background-color));
+    background-color: var(--alternate-background-color);
 
     min-width: 15ch;
 
