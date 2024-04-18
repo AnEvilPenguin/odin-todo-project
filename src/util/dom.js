@@ -30,6 +30,7 @@ export function abstractElementFactory(tag) {
 export const div = abstractElementFactory("div");
 export const h1 = abstractElementFactory("h1");
 export const h2 = abstractElementFactory("h2");
+export const p = abstractElementFactory("p");
 
 export const img = abstractElementFactory("img");
 export const button = abstractElementFactory("button");
