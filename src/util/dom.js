@@ -41,6 +41,8 @@ export const li = abstractElementFactory("li");
 export const form = abstractElementFactory("form");
 export const label = abstractElementFactory("label");
 export const input = abstractElementFactory("input");
+export const select = abstractElementFactory("select");
+export const option = abstractElementFactory("option");
 
 export const table = abstractElementFactory("table");
 export const thead = abstractElementFactory("thead");

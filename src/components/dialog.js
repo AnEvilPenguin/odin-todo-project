@@ -1,4 +1,4 @@
-import { dialog, button, h2, div, form, label, input } from "../util/dom";
+import { dialog, button, h2, div, form, label, input, select, option } from "../util/dom";
 import { Todo } from "../classes/todo";
 
 export function Dialog(
@@ -104,6 +104,15 @@ export function TodoDialog({ addItemToProject }) {
         labelText: "Due Date",
     });
 
+    const priorityLabel = label({ for: "form-todo-priority" }, "Priority");
+    const prioritySelect = select({ name: "priority", id: "form-todo-priority"},
+        option({ value: ""}, "--Select a priority--"),
+        option({ value: "P1"}, "Priority 1"),
+        option({ value: "P2"}, "Priority 2"),
+        option({ value: "P3"}, "Priority 3"),
+        option({ value: "P4"}, "Priority 4"),
+    );
+
     // dialog.returnValue seems to only work with simple values
     const onSubmit = (event) => {
         event.preventDefault();
@@ -112,13 +121,13 @@ export function TodoDialog({ addItemToProject }) {
             return;
         }
 
-        const todo = new Todo(getName(), getDate());
+        const todo = new Todo(getName(), getDate(), prioritySelect.value);
         addItemToProject(todo);
     };
 
     const todoDialog = Dialog(
         { title: "New Todo Item", onSubmit },
-        form({ classList: ["todo-form"] }, div({}, ...nameComponents), div({}, ...dateComponents)),
+        form({ classList: ["todo-form"] }, div({}, ...nameComponents), div({}, ...dateComponents), div({}, priorityLabel, prioritySelect)),
     );
 
     return todoDialog;
