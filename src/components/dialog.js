@@ -133,10 +133,6 @@ export function TodoDialog({ addItemToProject }) {
 
         if (!todo) {
             existingTodo = false;
-            nameInput.setAttribute("value", "");
-            dueInput.setAttribute("value", "");
-            prioritySelect.setAttribute("value", "");
-            descriptionInput.setAttribute("value", "");
         }
         else {
             existingTodo = todo;
