@@ -11,6 +11,7 @@ export function TodoItem(todo, removeItem, showDialog) {
         td({ classList: ["value"] }, todo.name),
         td({ classList: ["value"] }, todo.dueDate),
         td({ classList: ["value"] }, todo.priority),
+        td({ classList: ["value"] }, todo.description),
     ];
 
     values.forEach(v => v.addEventListener("click", () => showDialog(todo)));

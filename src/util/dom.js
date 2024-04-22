@@ -43,6 +43,7 @@ export const label = abstractElementFactory("label");
 export const input = abstractElementFactory("input");
 export const select = abstractElementFactory("select");
 export const option = abstractElementFactory("option");
+export const textArea = abstractElementFactory("textArea");
 
 export const table = abstractElementFactory("table");
 export const thead = abstractElementFactory("thead");

@@ -1,4 +1,4 @@
-import { dialog, button, h2, div, form, label, input, select, option } from "../util/dom";
+import { dialog, button, h2, div, form, label, input, select, option, textArea } from "../util/dom";
 import { Todo } from "../classes/todo";
 
 export function Dialog(
@@ -76,8 +76,8 @@ export function TodoDialog({ addItemToProject }) {
     const nameLabel = label({ classList: ["form-label"], for: "form-todo-name" }, "Todo Name*");
     const nameInput = input({ classList: ["form-input"], id: "form-todo-name", type: "text" });
 
-    const dueLabel = label({ classList: ["form-label"], for: "form-project-due" }, "Due Date");
-    const dueInput = input({ classList: ["form-input"], id: "form-project-due", type: "date" });
+    const dueLabel = label({ classList: ["form-label"], for: "form-todo-due" }, "Due Date");
+    const dueInput = input({ classList: ["form-input"], id: "form-todo-due", type: "date" });
 
     const priorityLabel = label({ for: "form-todo-priority" }, "Priority");
     const prioritySelect = select({ name: "priority", id: "form-todo-priority" },
@@ -88,11 +88,15 @@ export function TodoDialog({ addItemToProject }) {
         option({ value: "P4" }, "Priority 4"),
     );
 
+    const descriptionLabel = label({ classList: ["form-label"], for: "form-todo-description"}, "Description");
+    const descriptionInput = textArea({ classList: ["form-input"], id: "form-todo-description"});
+
     const todoForm = form(
         { classList: ["todo-form"] },
         div({}, nameLabel, nameInput),
         div({}, dueLabel, dueInput),
-        div({}, priorityLabel, prioritySelect)
+        div({}, priorityLabel, prioritySelect),
+        div({}, descriptionLabel, descriptionInput),
     );
 
     // dialog.returnValue seems to only work with simple values
@@ -108,11 +112,12 @@ export function TodoDialog({ addItemToProject }) {
             existingTodo.name = nameInput.value;
             existingTodo.dueDate = dueInput.value;
             existingTodo.priority = prioritySelect.value;
+            existingTodo.description = descriptionInput.value;
 
             addItemToProject(existingTodo);
         }
         else {
-            const todo = new Todo(nameInput.value, dueInput.value, prioritySelect.value);
+            const todo = new Todo(nameInput.value, dueInput.value, prioritySelect.value, descriptionInput.value);
             addItemToProject(todo);
         }
 
@@ -126,20 +131,19 @@ export function TodoDialog({ addItemToProject }) {
 
     const showDialog = (todo) => {
 
-        console.dir(nameInput);
-        console.dir(todo);
-
         if (!todo) {
             existingTodo = false;
             nameInput.setAttribute("value", "");
             dueInput.setAttribute("value", "");
             prioritySelect.setAttribute("value", "");
+            descriptionInput.setAttribute("value", "");
         }
         else {
             existingTodo = todo;
             nameInput.value = todo.name;
             dueInput.value = todo.dueDate;
             prioritySelect.value = todo.priority;
+            descriptionInput.value = todo.description;
         }
 
         todoDialog.showModal();
