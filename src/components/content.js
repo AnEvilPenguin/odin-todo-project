@@ -4,7 +4,7 @@ import { ActionBar } from "./actionBar";
 import { TodoDialog } from "./dialog";
 import { Table } from "./table";
 
-export function Content(project, regenerateApp, removeProject, projectDialog) {
+export function Content(project, regenerateApp, removeProject, projectDialog, sortProperty, setSort) {
   const addItemToProject = (todo) => {
     project.setTodoItem(todo);
     regenerateApp();
@@ -20,7 +20,7 @@ export function Content(project, regenerateApp, removeProject, projectDialog) {
     projectDialog,
     todoDialog,
     ActionBar({ newTodoItem: showDialog, removeProject }),
-    Table(project, regenerateApp, showDialog),
+    Table(project, regenerateApp, showDialog, sortProperty, setSort),
     newButton,
   );
 }

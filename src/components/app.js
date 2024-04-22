@@ -8,25 +8,27 @@ import { Content } from "./content";
 import { ProjectDialog } from "./dialog";
 
 export function App(Props) {
-  const {
-    projects,
-    activeProjectId,
-    regenerateApp,
-    removeProject,
-    newProject,
-  } = Props;
-  const activeProject = projects.find((p) => p.id === activeProjectId);
+    const {
+        projects,
+        activeProjectId,
+        regenerateApp,
+        removeProject,
+        newProject,
+        sortProperty,
+        setSort,
+    } = Props;
+    const activeProject = projects.find((p) => p.id === activeProjectId);
 
-  const projectDialog = ProjectDialog({ newProject });
+    const projectDialog = ProjectDialog({ newProject });
 
-  const showProjectDialog = () => projectDialog.showModal();
+    const showProjectDialog = () => projectDialog.showModal();
 
-  return div(
-    { classList: ["app"] },
-    Logo(penguinLogo),
-    Banner(activeProject),
-    Sidebar({ ...Props, showProjectDialog }),
-    Content(activeProject, regenerateApp, removeProject, projectDialog),
-    Footer(),
-  );
+    return div(
+        { classList: ["app"] },
+        Logo(penguinLogo),
+        Banner(activeProject),
+        Sidebar({ ...Props, showProjectDialog }),
+        Content(activeProject, regenerateApp, removeProject, projectDialog, sortProperty, setSort),
+        Footer(),
+    );
 }

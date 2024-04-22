@@ -10,49 +10,57 @@ let functions;
 
 let { projects, activeProject } = loadProjects();
 
+let sortProperty;
+
 const createApp = (projects, activeProjectId) =>
-  App({ projects, activeProjectId, ...functions });
+    App({ projects, activeProjectId, sortProperty, ...functions });
 
 const regenerateApp = () => {
-  body.textContent = "";
+    body.textContent = "";
 
-  const app = createApp(projects, activeProject);
-  body.appendChild(app);
+    const app = createApp(projects, activeProject);
+    body.appendChild(app);
 
-  saveProjects(projects, activeProject);
+    saveProjects(projects, activeProject);
 };
 
 const newProject = (projectName) => {
-  const newProject = new Project(projectName);
-  projects.push(newProject);
+    const newProject = new Project(projectName);
+    projects.push(newProject);
 
-  setActiveProject(newProject.id);
+    setActiveProject(newProject.id);
 };
 
 const removeProject = () => {
-  projects = projects.filter((p) => p.id !== activeProject);
+    projects = projects.filter((p) => p.id !== activeProject);
 
-  activeProject = projects?.find((p) => p.id)?.id;
+    activeProject = projects?.find((p) => p.id)?.id;
 
-  saveProjects(projects, activeProject);
+    saveProjects(projects, activeProject);
 
-  const loaded = loadProjects();
+    const loaded = loadProjects();
 
-  projects = loaded.projects;
-  activeProject = loaded.activeProject;
+    projects = loaded.projects;
+    activeProject = loaded.activeProject;
 
-  regenerateApp();
+    regenerateApp();
 };
 
 const setActiveProject = (projectId) => {
-  activeProject = projectId;
-  regenerateApp();
+    activeProject = projectId;
+    regenerateApp();
 };
 
+const setSort = (property) => {
+    sortProperty = property;
+    regenerateApp();
+}
+
 functions = {
-  newProject,
-  setActiveProject,
-  regenerateApp,
-  removeProject,
+    newProject,
+    setActiveProject,
+    regenerateApp,
+    removeProject,
+    setSort,
 };
 regenerateApp();
