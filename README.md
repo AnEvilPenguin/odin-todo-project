@@ -22,3 +22,10 @@ concepts coming in with local storage.
 
 ![wireframe design](./docs/1000018588.jpg)
 
+# Closing thoughts and after action review
+
+A lot of this went very well. Generally things worked quickly.  
+However there are a lot of things that need some work.
+The table interface was probably more complicated than required. I wound up dropping intended features.
+I basically built a poor mans react.
+There are a number of places where I could have improved state management substantially. This would involve a lot of refactoring at this stage.
