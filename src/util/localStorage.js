@@ -55,7 +55,7 @@ export function loadProjects() {
 
     project.items.forEach((item) =>
       rehydratedProject.setTodoItem(
-        new Todo(item.name, item.dueDate, item.priority),
+        new Todo(item.name, item.dueDate, item.priority, item.description),
       ),
     );
 

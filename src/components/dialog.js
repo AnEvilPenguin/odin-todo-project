@@ -139,7 +139,6 @@ export function TodoDialog({ addItemToProject }) {
             nameInput.value = todo.name;
             dueInput.value = todo.dueDate;
             prioritySelect.value = todo.priority;
-            descriptionInput.value = todo.description;
         }
 
         todoDialog.showModal();
