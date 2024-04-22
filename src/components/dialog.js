@@ -45,39 +45,18 @@ export function Dialog(
     return dialogInstance;
 }
 
-function newLabelInputPair({ inputId, inputType, labelText }) {
-
-    const newLabel = label({ classList: ["form-label"], for: inputId }, labelText);
-    const newInput = input({ classList: ["form-input"], id: inputId, type: inputType });
-
-
-    const getValue = () => newInput.value;
-
-    return {
-        components: [
-            newLabel,
-            newInput,
-        ],
-        getValue,
-    };
-}
-
 export function ProjectDialog({ newProject }) {
-    const { getValue, components } =
-        newLabelInputPair({
-            inputId: "form-project-name",
-            inputType: "text",
-            labelText: "Project Name*",
-        });
+    const nameLabel = label({ classList: ["form-label"], for: "form-project-name" }, "Project Name*");
+    const nameInput = input({ classList: ["form-input"], id: "form-project-name", type: "text" });
 
     const onSubmit = (event) => {
         event.preventDefault();
-        return getValue();
+        return nameInput.value;
     };
 
     const projectDialog = Dialog(
         { title: "New Project", onSubmit },
-        form({ classList: ["project-form"] }, div({}, ...components)),
+        form({ classList: ["project-form"] }, div({}, nameLabel, nameInput)),
     );
 
     projectDialog.addEventListener("close", () => {
@@ -92,43 +71,79 @@ export function ProjectDialog({ newProject }) {
 }
 
 export function TodoDialog({ addItemToProject }) {
-    const { getValue: getName, components: nameComponents } = newLabelInputPair({
-        inputId: "form-todo-name",
-        inputType: "text",
-        labelText: "Todo Name*",
-    });
+    let existingTodo = false;
 
-    const { getValue: getDate, components: dateComponents } = newLabelInputPair({
-        inputId: "form-todo-date",
-        inputType: "date",
-        labelText: "Due Date",
-    });
+    const nameLabel = label({ classList: ["form-label"], for: "form-todo-name" }, "Todo Name*");
+    const nameInput = input({ classList: ["form-input"], id: "form-todo-name", type: "text" });
+
+    const dueLabel = label({ classList: ["form-label"], for: "form-project-due" }, "Due Date");
+    const dueInput = input({ classList: ["form-input"], id: "form-project-due", type: "date" });
 
     const priorityLabel = label({ for: "form-todo-priority" }, "Priority");
-    const prioritySelect = select({ name: "priority", id: "form-todo-priority"},
-        option({ value: ""}, "--Select a priority--"),
-        option({ value: "P1"}, "Priority 1"),
-        option({ value: "P2"}, "Priority 2"),
-        option({ value: "P3"}, "Priority 3"),
-        option({ value: "P4"}, "Priority 4"),
+    const prioritySelect = select({ name: "priority", id: "form-todo-priority" },
+        option({ value: "" }, "--Select a priority--"),
+        option({ value: "P1" }, "Priority 1"),
+        option({ value: "P2" }, "Priority 2"),
+        option({ value: "P3" }, "Priority 3"),
+        option({ value: "P4" }, "Priority 4"),
+    );
+
+    const todoForm = form(
+        { classList: ["todo-form"] },
+        div({}, nameLabel, nameInput),
+        div({}, dueLabel, dueInput),
+        div({}, priorityLabel, prioritySelect)
     );
 
     // dialog.returnValue seems to only work with simple values
     const onSubmit = (event) => {
         event.preventDefault();
 
-        if (!getName()) {
+        if (!nameInput.value) {
+            todoForm.reset();
             return;
         }
 
-        const todo = new Todo(getName(), getDate(), prioritySelect.value);
-        addItemToProject(todo);
+        if (existingTodo) {
+            existingTodo.name = nameInput.value;
+            existingTodo.dueDate = dueInput.value;
+            existingTodo.priority = prioritySelect.value;
+
+            addItemToProject(existingTodo);
+        }
+        else {
+            const todo = new Todo(nameInput.value, dueInput.value, prioritySelect.value);
+            addItemToProject(todo);
+        }
+
+        todoForm.reset();
     };
 
     const todoDialog = Dialog(
-        { title: "New Todo Item", onSubmit },
-        form({ classList: ["todo-form"] }, div({}, ...nameComponents), div({}, ...dateComponents), div({}, priorityLabel, prioritySelect)),
+        { title: "New Todo Item", onSubmit, onCancel: () => todoForm.reset() },
+        todoForm,
     );
 
-    return todoDialog;
+    const showDialog = (todo) => {
+
+        console.dir(nameInput);
+        console.dir(todo);
+
+        if (!todo) {
+            existingTodo = false;
+            nameInput.setAttribute("value", "");
+            dueInput.setAttribute("value", "");
+            prioritySelect.setAttribute("value", "");
+        }
+        else {
+            existingTodo = todo;
+            nameInput.value = todo.name;
+            dueInput.value = todo.dueDate;
+            prioritySelect.value = todo.priority;
+        }
+
+        todoDialog.showModal();
+    };
+
+    return { todoDialog, showDialog };
 }

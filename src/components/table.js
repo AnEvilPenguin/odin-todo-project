@@ -2,7 +2,7 @@ import { table, thead, tbody, tr, th } from "../util/dom";
 import { TodoItem } from "./todoItem";
 import Delete from "../assets/trash-icon.svg";
 
-export function Table(project, regenerateApp) {
+export function Table(project, regenerateApp, showDialog) {
   let body;
   if (project) {
     const todoList = project.listTodoItems();
@@ -14,7 +14,7 @@ export function Table(project, regenerateApp) {
           regenerateApp();
         };
 
-        const item = TodoItem(t, removeItem);
+        const item = TodoItem(t, removeItem, showDialog);
 
         return item;
       }),

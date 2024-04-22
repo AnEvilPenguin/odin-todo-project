@@ -10,18 +10,17 @@ export function Content(project, regenerateApp, removeProject, projectDialog) {
     regenerateApp();
   };
 
-  const todoDialog = TodoDialog({ addItemToProject });
-  const showTodoModal = () => todoDialog.showModal();
+  const { todoDialog, showDialog } = TodoDialog({ addItemToProject });
 
   const newButton = Action({ classList: ["new-button"], text: "New" });
-  newButton.addEventListener("click", showTodoModal);
+  newButton.addEventListener("click", () => showDialog());
 
   return div(
     { classList: ["content"] },
     projectDialog,
     todoDialog,
-    ActionBar({ newTodoItem: showTodoModal, removeProject }),
-    Table(project, regenerateApp),
+    ActionBar({ newTodoItem: showDialog, removeProject }),
+    Table(project, regenerateApp, showDialog),
     newButton,
   );
 }

@@ -7,7 +7,7 @@ import { DropdownMenu } from "./dropdownMenu";
 
 export function ActionBar({ newTodoItem, removeProject }) {
   const addAction = Action({ svg: Add });
-  addAction.addEventListener("click", newTodoItem);
+  addAction.addEventListener("click", () => newTodoItem());
 
   const hamburger = Action({
     svg: Hamburger,
