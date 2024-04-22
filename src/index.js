@@ -11,9 +11,10 @@ let functions;
 let { projects, activeProject } = loadProjects();
 
 let sortProperty;
+let sortDirection = 1;
 
 const createApp = (projects, activeProjectId) =>
-    App({ projects, activeProjectId, sortProperty, ...functions });
+    App({ projects, activeProjectId, sortProperty, sortDirection, ...functions });
 
 const regenerateApp = () => {
     body.textContent = "";
@@ -52,7 +53,8 @@ const setActiveProject = (projectId) => {
 };
 
 const setSort = (property) => {
-    sortProperty = property;
+    sortDirection = property === sortProperty ? sortDirection * -1: 1;
+    sortProperty = property
     regenerateApp();
 }
 

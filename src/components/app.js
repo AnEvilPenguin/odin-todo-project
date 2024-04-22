@@ -14,6 +14,7 @@ export function App(Props) {
         regenerateApp,
         removeProject,
         newProject,
+        sortDirection,
         sortProperty,
         setSort,
     } = Props;
@@ -28,7 +29,7 @@ export function App(Props) {
         Logo(penguinLogo),
         Banner(activeProject),
         Sidebar({ ...Props, showProjectDialog }),
-        Content(activeProject, regenerateApp, removeProject, projectDialog, sortProperty, setSort),
+        Content(activeProject, regenerateApp, removeProject, projectDialog, sortProperty, setSort, sortDirection),
         Footer(),
     );
 }

@@ -2,7 +2,7 @@ import { table, thead, tbody, tr, th } from "../util/dom";
 import { TodoItem } from "./todoItem";
 import Delete from "../assets/trash-icon.svg";
 
-export function Table(project, regenerateApp, showDialog, sortProperty, setSort) {
+export function Table(project, regenerateApp, showDialog, sortProperty, setSort, sortDirection) {
     let body;
     if (project) {
         let todoList = project.listTodoItems();
@@ -11,10 +11,10 @@ export function Table(project, regenerateApp, showDialog, sortProperty, setSort)
                 const propA = a[sortProperty];
                 const propB = b[sortProperty];
                 if (propA < propB) {
-                    return -1;
+                    return -1 * sortDirection;
                 }
                 else if (propA > propB) {
-                    return 1;
+                    return 1 * sortDirection;
                 }
 
                 return 0;
